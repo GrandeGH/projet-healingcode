@@ -30,12 +30,20 @@ class Patients {
 
 
 let Marcus = new Patients ("Marcus", "mal indenté", 100, "vide", "malade")
-let Optimus = new Patients ("Optimus", "unsave", 200, "vide", "malade")
+let Optimus = new Patients ("Optimus Prime", "unsave", 200, "vide", "malade")
 let Songoku = new Patients ("Son Goku", "404", 80, "vide", "malade")
-let DarthVader = new Patients ("Darth Vader", "azmatique", 110, "vide", "malade")
+let DarthVader = new Patients ("Dark Vador", "azmatique", 110, "vide", "malade")
 let Semicolon = new Patients ("Semicolon", "syntaxError", 60, "vide", "malade")
 
 let patients = [Marcus, Optimus, Songoku, DarthVader, Semicolon]
+
+
+// cabinet 
+
+let cabinet = {
+    nom: "Cabinet",
+    personne:["Docteur"]
+}
 
 // Docteur
 
@@ -53,18 +61,18 @@ class Docteur {
         if (this.patientIN)
             console.log("le cabinet est occupé, le patient " + patient.nom + " doit attendre")
         else {
-            this.patientIN = patient
+            this.patientIN = patient // entre dans le cabinet 
             console.log(`${patient.nom} est le suivant.`)
         }
     }
         
     consultation(patient) {
         console.log(`Le docteur consulte le patient ${this.patientIN.nom}`)
-        this.patientIN.payer(50);
-        this.argent += 50
-        let traitement = this.diagnostiquer(this.patientIN)
-        this.fairesortir()
-        return traitement
+        this.patientIN.payer(50); // le patient paye
+        this.argent += 50 // se fait payer
+        let traitement = this.diagnostiquer(this.patientIN) // diagnostique le patient  
+        this.fairesortir() // faire sortir de patient 
+        return traitement 
     }
 
     diagnostiquer(patient) {
@@ -119,7 +127,7 @@ const pharmacie = {
         }
         else {
             console.log(`${patient.nom} n'a pas assez d'argent, il est condamné à mourir`)
-            return false // si pas d'argent
+            return false // si pas assez d'argent
         }
     }
 }
@@ -138,7 +146,7 @@ class Cimetière {
 const docteur = new Docteur()
 
 patients.forEach(patient => {
-    patient.seDéplacer("Le cabinet")
+    patient.seDéplacer(cabinet.nom + " et en salle d'attente")
 })
 
 patients.forEach(patient => {

@@ -146,20 +146,20 @@ class Cimetière {
 const docteur = new Docteur()
 
 patients.forEach(patient => {
-    patient.seDéplacer(cabinet.nom + " et en salle d'attente")
+    patient.seDéplacer(cabinet.nom + " et en salle d'attente") // déplace vers le cabinet
 })
 
 patients.forEach(patient => {
-    docteur.accueillir(patient);
-    const traitement = docteur.consultation()
+    docteur.accueillir(patient); // accueille par patient
+    const traitement = docteur.consultation()  // consulte par patient
     
     if (traitement) {
-        patient.seDéplacer(pharmacie.nom)
-        const guéri = pharmacie.acheter(patient, traitement)
-        if (!guéri) {
-            Cimetière.annoncerDeces(patient)
-        }
+        patients.forEach(patient => {
+            patient.seDéplacer(pharmacie.nom) // déplace vers la pharmacie
+            const guéri = pharmacie.acheter(patient, traitement) //achète les traitements si l'argent est suffisant 
+            if (!guéri) {
+                Cimetière.annoncerDeces(patient) // annonce le décès
+            }
+        })
     }
 });
-
-
